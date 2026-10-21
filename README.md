@@ -21,9 +21,9 @@ The ecosystem defines and mathematically proves **four fundamental system invari
   
   ![Source Authenticity Verification](images/Source-Authenticity.png)
 
-### 2. Deterministic \(\mathcal{O}(1)\) Computational Boundary & Gas Predictability
+### 2. Deterministic $(\mathcal{O}(1))$ Computational Boundary & Gas Predictability
 * **File:** `Constant-Complexity.tla` / `Constant-Complexity.cfg`
-* **Focus:** EVM Instruction Optimization. Proves that the partial derivative of Gas consumption relative to Database scale is strictly zero (\(\frac{\partial \mathcal{G}}{\partial N} = 0\)). By utilizing stateless nested key-value map configurations, validation costs remain strictly bound to a flat ceiling of exactly **32,365 gas units** regardless of database growth or multi-owner density.
+* **Focus:** EVM Instruction Optimization. Proves that the partial derivative of Gas consumption relative to Database scale is strictly zero ($(\frac{\partial \mathcal{G}}{\partial N} = 0)$). By utilizing stateless nested key-value map configurations, validation costs remain strictly bound to a flat ceiling of exactly **32,365 gas units** regardless of database growth or multi-owner density.
 * **TLC Trace Mapping:**
   
   ![Constant Complexity Verification](images/Constant-Complexity.png)
@@ -39,7 +39,7 @@ The ecosystem defines and mathematically proves **four fundamental system invari
 * **File:** `Cryptographic-Anonymization.tla` / `Cryptographic-Anonymization.cfg`
 * **Focus:** Two-Perspective Zero-Trust Access Control. Formally validates that:
   1. Upon executing ownership revocation traces, local plain-text metadata shares are permanently zeroed out (`ownershipShares = 0`), leaving an irreversible anonymous cryptographic hash under EU GDPR privacy frameworks.
-  2. If out-of-band `Isolation Forest` anomalies drop the active dynamic trust score below \(T_{TOLERANCE} = 20\), the web-tier middleware instantly short-circuits execution (`isActiveSession = FALSE`), halting malicious payloads before ledger transmission.
+  2. If out-of-band `Isolation Forest` anomalies drop the active dynamic trust score below $T_{TOLERANCE} = 20$, the web-tier middleware instantly short-circuits execution (`isActiveSession = FALSE`), halting malicious payloads before ledger transmission.
 * **TLC Trace Mapping:**
   
   ![Cryptographic Anonymization Verification](images/Cryptographic-Anonymization.png)

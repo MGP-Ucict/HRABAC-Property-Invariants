@@ -25,11 +25,13 @@ Init ==
     /\ isActiveSession = [i \in Inspectors |-> TRUE]
 
 ProcessAIAnomalyPenalty(inspector, penaltyScore) ==
-    LET evaluationScore == tCurrent[inspector] - penaltyScore
-    LET currentTrust == IF evaluationScore < 0 THEN 0 ELSE evaluationScore
-    IN  /\ tCurrent' = [tCurrent EXCEPT ![inspector] = currentTrust]
-        /\ isActiveSession' = [isActiveSession EXCEPT ![inspector] = (currentTrust > T_TOLERANCE)]
-        /\ UNCHANGED <<ownershipRegistry, ownershipShares>>
+    /\ \/ /\ tCurrent[inspector] - penaltyScore < 0
+          /\ tCurrent' = [tCurrent EXCEPT ![inspector] = 0]
+          /\ isActiveSession' = [isActiveSession EXCEPT ![inspector] = FALSE]
+       \/ /\ tCurrent[inspector] - penaltyScore >= 0
+          /\ tCurrent' = [tCurrent EXCEPT ![inspector] = tCurrent[inspector] - penaltyScore]
+          /\ isActiveSession' = [isActiveSession EXCEPT ![inspector] = (tCurrent[inspector] - penaltyScore > T_TOLERANCE)]
+    /\ UNCHANGED <<ownershipRegistry, ownershipShares>>
 
 RevokeSingleOwnerAnchor(inspector, pHash, cHash) ==
     /\ isActiveSession[inspector] = TRUE
