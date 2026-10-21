@@ -23,7 +23,7 @@ The ecosystem defines and mathematically proves **four fundamental system invari
 
 ### 2. Deterministic $(\mathcal{O}(1))$ Computational Boundary & Gas Predictability
 * **File:** `Constant-Complexity.tla` / `Constant-Complexity.cfg`
-* **Focus:** EVM Instruction Optimization. Proves that the partial derivative of Gas consumption relative to Database scale is strictly zero ($(\frac{\partial \mathcal{G}}{\partial N} = 0)$). By utilizing stateless nested key-value map configurations, validation costs remain strictly bound to a flat ceiling of exactly **32,365 gas units** regardless of database growth or multi-owner density.
+* **Focus:** EVM Instruction Optimization. Proves that the partial derivative of Gas consumption relative to Database scale is strictly zero. By utilizing stateless nested key-value map configurations, validation costs remain strictly bound to a flat ceiling of exactly **32,365 gas units** regardless of database growth or multi-owner density.
 * **TLC Trace Mapping:**
   
   ![Constant Complexity Verification](images/Constant-Complexity.png)
